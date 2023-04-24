@@ -24,7 +24,8 @@ public class Board {
         System.out.println("M x y where x and y are whole numbers that signify the coordinates on the board that should be marked as a suspected bomb.");
         isRunning = true;
         while (isRunning) {
-            printGameBoard();command.getUserInput(col, row);
+            printGameBoard();
+            command.getUserInput(col, row);
             executeCommand();
         }
         printGameBoard();
@@ -45,12 +46,12 @@ public class Board {
             } else {
 
                 if (cell.getNumber() == 0) {
-                    //TODO alles aufdecken
-                    for(int column = columnNumberCell + 1; column >= columnNumberCell - 1; column--) {
+                    //alles aufdecken
+                    for (int column = columnNumberCell + 1; column >= columnNumberCell - 1; column--) {
                         for (int row = rowNumberCell + 1; row >= rowNumberCell - 1; row--) {
 
-                            Cell otherCell = backgroundBoard.getCell(column,row);
-                            if (otherCell.getNumber() == 1) {
+                            Cell otherCell = backgroundBoard.getCell(column, row);
+                            if (!otherCell.isBomb()) {
                                 otherCell.setDisabled(true);
                             }
                         }
